@@ -7,8 +7,8 @@ const Header = () => {
                 <div className='flex justify-between pt-10'>
                     <span className='font-bold text-3xl text-pink-500'>SushiLike</span>
                     <div className='font-semibold text-pink-600 space-x-2'>
-                        <a href='#' className='hover:underline'>About</a>
-                        <a href='#' className='bg-red-500 py-2 px-4 rounded-full text-white hover:bg-red-600'>Contacts</a>
+                        <a href='/' className='hover:underline'>About</a>
+                        <a href='/' className='bg-red-500 py-2 px-4 rounded-full text-white hover:bg-red-600'>Contacts</a>
                     </div>
                 </div>
             </header>
