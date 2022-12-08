@@ -1,7 +1,7 @@
 import React from 'react';
 import Btn from './components/btn';
 import Content from './components/content';
-// import Grid from './components/grid';
+import Grid from './components/grid';
 import Header from './components/header';
 
 const App = () => {
@@ -21,7 +21,7 @@ const App = () => {
         <Btn value='А как пройти в билиотеку?' />
         <Btn value='сколько время?' />
       </div>
-      {/* <Grid /> */}
+      <Grid />
     </div>
   );
 };
