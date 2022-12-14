@@ -1,5 +1,4 @@
 import React from 'react';
-import Btn from './components/btn';
 import Content from './components/content';
 import Edit from './components/edit';
 // import Grid from './components/grid';

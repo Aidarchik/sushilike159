@@ -1,5 +1,4 @@
 import React from 'react';
-import arrow from '../images/arrow.png'
 
 const Edit = () => {
     return (
