@@ -17,6 +17,9 @@ const Content = () => {
                     <Question data={'Привет'} />
                     <Answer data={data} />
                     <Question data={data} />
+                    <Question data={data} />
+                    <Question data={data} />
+                    <Question data={data} />
                     <Answer data={data} />
                 </div>
             </main>
