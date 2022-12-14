@@ -4,9 +4,9 @@ const Answer = (props) => {
     const { data } = props
     return (
         <>
-            <div className='flex justify-between md:justify-start'>
-                <div className='bg-gray-800 text-white text-sm px-3 py-1 rounded-3xl m-2 self-start md:self-auto'>{data}</div>
-                <div className='w-3/4'></div>
+            <div className='flex justify-between lg:justify-start'>
+                <div className='bg-gray-800 text-white text-sm px-3 py-1 rounded-3xl m-2 self-start lg:self-auto' >{data}</div>
+                <div className='w-1/3 lg:w-0'></div>
             </div>
         </>
     )
