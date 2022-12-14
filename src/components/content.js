@@ -8,14 +8,18 @@ const Content = () => {
 
     return (
         <>
-            <main className='container mx-auto py-10 max-w-3xl'>
+            <main className='container mx-auto py-12 max-w-3xl'>
                 <h1 className='text-center text-3xl font-bold'>Sushilike</h1>
-                <div className='pt-3 mx-auto text-justify bg-white bg-opacity-70 rounded py-1 px-2 mt-5'>
+                <div className='pt-3 mx-auto text-justify bg-white bg-opacity-70 rounded-tl-lg rounded-tr-lg py-1 px-2 mt-5'>
                     <Answer data={'Привет'} />
                     <Question data={data} />
                     <Answer data={data} />
                     <Question data={'Привет'} />
                     <Answer data={data} />
+                    <Question data={data} />
+                    <Question data={data} />
+                    <Question data={data} />
+                    <Question data={data} />
                     <Question data={data} />
                     <Question data={data} />
                     <Question data={data} />

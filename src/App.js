@@ -10,7 +10,6 @@ const App = () => {
     <div className='bg-hero-pattern bg-cover bg-fixed bg-no-repeat px-4'>
       <Header />
       <Content />
-      <Btn value='Да уж' />
       <Edit />
       {/* <Grid /> */}
     </div>
