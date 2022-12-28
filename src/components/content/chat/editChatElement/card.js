@@ -1,6 +1,7 @@
 import React from 'react';
 
 const Card = (props) => {
+    const imgPath = 'http://localhost:5000/images/'
     const { post } = props
     return (
         <>
@@ -16,7 +17,7 @@ const Card = (props) => {
                     <span className="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         Read more
                     </span>
-                    <img src={`https://sushilike159.ru/images/35ec1a5d-59ea-413d-99f0-f1216cc18211.jpg`} alt="" className='w-16 h-16' />
+                    {post.picture ? <img src={imgPath + post.picture} alt="" className='w-1/5 h-1/5' /> : ''}
                 </div>
             </div>
         </>
