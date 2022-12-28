@@ -14,7 +14,7 @@ const Content = () => {
 
     return (
         <>
-            <main className='container mx-auto py-12 max-w-3xl'>
+            <main className='container mx-auto py-12'>
                 <h1 className='text-center text-3xl font-bold'>Sushilike</h1>
                 <div className='flex'>
                     <EditChatElement />
