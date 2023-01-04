@@ -8,6 +8,7 @@ const App = () => {
       <div className='bg-scroll'>
         <Header />
         <Content />
+
       </div>
     </div>
   );
