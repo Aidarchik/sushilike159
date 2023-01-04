@@ -1,7 +1,7 @@
 import React from 'react';
 
 const Card = (props) => {
-    const imgPath = 'http://localhost:5000/images/'
+    const imgPath = 'https://sushilike159.ru/images/'
     const { post } = props
     return (
         <>
