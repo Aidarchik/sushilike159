@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { URL_POSTS, URL_POSTS_REMOTE } from '../../../../consts'
+import { URL_POSTS } from '../../../../consts'
 import Card from './card'
 
 const EditChatElement = () => {
