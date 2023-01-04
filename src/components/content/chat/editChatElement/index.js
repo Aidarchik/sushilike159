@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { URL_POSTS } from '../../../../consts'
+import { URL_POSTS_REMOTE } from '../../../../consts'
 import Card from './card'
 
 const EditChatElement = () => {
@@ -15,7 +15,7 @@ const EditChatElement = () => {
     ])
 
     useEffect(() => {
-        fetch(URL_POSTS)
+        fetch(URL_POSTS_REMOTE)
             .then(res => res.json())
             .then(json => setPosts(json.message))
     }, [])
