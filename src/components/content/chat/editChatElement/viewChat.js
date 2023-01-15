@@ -1,67 +1,38 @@
-import React, { useCallback, useState } from 'react'
-import { URL_POSTS_REMOTE } from '../../../../const'
+import React from 'react'
 import Card from './card'
-import useFetch from '../../../../hooks/useFetch';
-import { useEffect } from 'react';
 import EditChat from './editChat';
+import useCRUD from './../../../../hooks/useCRUD';
+import { URL_POSTS_REMOTE } from './../../../../const';
 
 const ViewChat = () => {
 
-    const [data, setData] = useState([])
-    const { request, loading, error } = useFetch()
+    // const { data, onCreate, onRead, onUpdate, onDelete, loading, error } = useCRUD(URL_POSTS_REMOTE);
+    const POSTS = useCRUD(URL_POSTS_REMOTE);
 
-    const getPosts = useCallback(async () => {
-        try {
-            const data = await request(URL_POSTS_REMOTE, 'GET')
-            setData(data.message)
-        } catch (e) { }
-    }, [request])
-
-    useEffect(() => {
-        getPosts()
-    }, [getPosts])
-
-    const onRemove = async (id) => {
-        try {
-            await request(URL_POSTS_REMOTE + '/' + id, 'DELETE')
-            getPosts()
-        } catch (e) { }
-    }
-
-    const onAdd = async () => {
-        try {
-            await request(
-                URL_POSTS_REMOTE,
-                'POST',
-                JSON.stringify({
-                    "author": "Aidar",
-                    "title": "Title",
-                    "content": "Content"
-                }),
-                {
-                    'Content-Type': 'application/json'
-                    // 'Content-Type': 'application/x-www-form-urlencoded',
-                }
-            )
-            getPosts()
-        } catch (e) { }
-    }
-
-
-
-    if (loading) return 'Loading...'
-    if (error) {
-        console.log('error', error)
+    if (POSTS.error) {
+        console.log('error', POSTS.error)
         return null
     }
-
     return (
-        <>
-            {data.map(elem => (
-                <Card post={elem} key={elem._id} remove={onRemove} />
-            ))}
-            <EditChat add={onAdd} />
-        </>
+        <div className='pt-3 w-1/2 text-justify bg-white bg-opacity-70 rounded-tl-lg rounded-tr-lg py-1 px-2 mt-5 mx-1 shadow-sm'>
+            {
+                POSTS.loading ?
+                    ('Loading...') :
+                    (
+                        <>
+                            <EditChat add={POSTS.onCreate} />
+                            {POSTS.data.map(elem => (
+                                <Card
+                                    post={elem}
+                                    key={elem._id}
+                                    remove={POSTS.onDelete}
+                                    update={POSTS.onUpdate}
+                                />
+                            ))}
+                        </>
+                    )
+            }
+        </div>
     )
 }
 
