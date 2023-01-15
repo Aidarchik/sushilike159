@@ -2,7 +2,7 @@ import React from 'react';
 
 const Card = (props) => {
     const imgPath = 'https://sushilike159.ru/images/'
-    const { post, remove, update } = props
+    const { post, remove, update, loading } = props
 
     const data = {
         "author": "Aidar",
@@ -13,9 +13,9 @@ const Card = (props) => {
     return (
         <div className=" bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 mb-2">
             <div className="p-5">
-                {post.isDelete ?
+                {(loading.isDelete & loading.id === post._id) || (loading.isUpdate & loading.id === post._id) ?
                     (
-                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" > Удаление...</h5>
+                        <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white" >{loading.isDelete ? 'Удаление...' : 'Обновление...'}</h5>
                     ) : (
                         <>
                             <span>

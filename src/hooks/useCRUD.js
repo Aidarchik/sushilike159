@@ -25,11 +25,11 @@ export default function useCRUD(URL) {
         try {
             if (id) {
                 const response = await request(URL + '/' + id, 'GET')
-                setData(response.message.map(el => ({ ...el, isDelete: false, isUpdate: false })))
+                setData(response.message)
             }
             else {
                 const response = await request(URL, 'GET')
-                setData(response.message.map(el => ({ ...el, isDelete: false, isUpdate: false })))
+                setData(response.message)
             }
         } catch (e) { }
     }, [request, URL])
@@ -54,21 +54,15 @@ export default function useCRUD(URL) {
 
     const onDelete = async (id) => {
         try {
-            setData(data.map(elem => {
-                if (elem._id === id) {
-                    return { ...elem, isDelete: true }
-                }
-                return elem
-            }))
             const response = await request(URL + '/' + id, 'DELETE')
             setData(data.filter(elem => elem._id !== response._id))
         } catch (e) { }
     }
 
+
     useEffect(() => {
         onRead()
     }, [onRead])
-
 
     return { data, loading, error, onCreate, onRead, onUpdate, onDelete };
 }
