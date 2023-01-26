@@ -25,9 +25,12 @@ const minimapStyle = {
 const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
 
 const Content = () => {
+    // eslint-disable-next-line
     const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
     const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)),// eslint-disable-next-line
+        []);
+    // eslint-disable-next-line
 
     // we are using a bit of a shortcut here to adjust the edge type
     // this could also be done with a custom edge for example
