@@ -59,6 +59,7 @@ function Select({ value, handleId, nodeId }) {
 }
 
 function CustomNode({ id, data }) {
+
     return (
         <>
             <div className="custom-node__header">

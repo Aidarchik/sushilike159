@@ -1,21 +1,22 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import ReactFlow, {
     addEdge,
     MiniMap,
     Controls,
     Background,
-    useNodesState,
-    useEdgesState,
+    applyNodeChanges,
 } from 'reactflow';
 
 import { nodes as initialNodes, edges as initialEdges } from './initial-elements';
 import CustomNode from './CustomNode';
+import TextUpdaterNode from './nodes'
 
 import 'reactflow/dist/style.css';
 import './overview.css';
 
 const nodeTypes = {
     custom: CustomNode,
+    textUpdater: TextUpdaterNode,
 };
 
 const minimapStyle = {
@@ -25,12 +26,24 @@ const minimapStyle = {
 const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
 
 const Content = () => {
-    // eslint-disable-next-line
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)),// eslint-disable-next-line
-        []);
-    // eslint-disable-next-line
+    const [nodes, setNodes] = useState(initialNodes);
+    const [edges, setEdges] = useState(initialEdges);
+
+    const onNodesChange = useCallback(
+        (changes) => setNodes((nds) =>
+            applyNodeChanges(changes, nds)),
+        [setNodes]
+    )
+
+    const onEdgesChange = useCallback(
+        (changes) => setEdges((egs) =>
+            applyNodeChanges(changes, egs)),
+        [setEdges]
+    )
+
+    const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)),
+        [setEdges]);
+
 
     // we are using a bit of a shortcut here to adjust the edge type
     // this could also be done with a custom edge for example

@@ -36,6 +36,15 @@ export const nodes = [
             },
         },
     },
+    // {
+    //     id: '8',
+    //     type: 'custom',
+    //     position: { x: 600, y: 0 },
+    //     data: {
+    //         label: <OneCard />
+    //     },
+    // },
+    { id: 'node-1', type: 'textUpdater', position: { x: 0, y: 0 }, data: { value: 123 } },
     {
         id: '5',
         type: 'output',

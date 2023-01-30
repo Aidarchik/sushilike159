@@ -3,7 +3,7 @@ import useFetch from "./useFetch"
 
 export default function useCRUD(URL) {
 
-    const [data, setData] = useState([])
+    const [data, setData] = useState(null)
     const { request, error, loading } = useFetch()
 
     const onCreate = async (createData) => {
