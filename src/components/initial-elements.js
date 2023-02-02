@@ -74,6 +74,7 @@ export const nodes = [
         position: { x: 400, y: 325 },
         sourcePosition: Position.Right,
         targetPosition: Position.Left,
+        // hidden: '    nodeHidden'
     },
     {
         id: '7',
@@ -106,7 +107,7 @@ export const edges = [
             selectIndex: 0,
         },
         markerEnd: {
-            type: MarkerType.ArrowClosed,
+            type: MarkerType.Arrow,
         },
     },
     {

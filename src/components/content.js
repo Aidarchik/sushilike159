@@ -1,10 +1,11 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useRef, useState } from 'react';
 import ReactFlow, {
     addEdge,
     MiniMap,
     Controls,
     Background,
-    applyNodeChanges,
+    useNodesState,
+    useEdgesState,
 } from 'reactflow';
 
 import { nodes as initialNodes, edges as initialEdges } from './initial-elements';
@@ -23,27 +24,47 @@ const minimapStyle = {
     height: 120,
 };
 
-const onInit = (reactFlowInstance) => console.log('flow loaded:', reactFlowInstance);
+let id = 0;
+const getId = () => `dndnode_${id++}`;
 
 const Content = () => {
-    const [nodes, setNodes] = useState(initialNodes);
-    const [edges, setEdges] = useState(initialEdges);
-
-    const onNodesChange = useCallback(
-        (changes) => setNodes((nds) =>
-            applyNodeChanges(changes, nds)),
-        [setNodes]
-    )
-
-    const onEdgesChange = useCallback(
-        (changes) => setEdges((egs) =>
-            applyNodeChanges(changes, egs)),
-        [setEdges]
-    )
+    const reactFlowWrapper = useRef(null);
+    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
+    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [reactFlowInstance, setReactFlowInstance] = useState(null)
 
     const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)),
         [setEdges]);
 
+    const onDragOver = useCallback((event) => {
+        event.preventDefault()
+        event.dataTransfer.dropEffect = 'move';
+    }, [])
+
+    const onDrop = useCallback((event) => {
+        event.preventDefault()
+        const reactFlowBounds = reactFlowWrapper.current.getBoundingClientRect();
+        const type = event.dataTransfer.getData('application/reactflow');
+
+        // check if the dropped element is valid
+        if (typeof type === 'undefined' || !type) {
+            return;
+        }
+        const position = reactFlowInstance.project({
+            x: event.clientX - reactFlowBounds.left,
+            y: event.clientY - reactFlowBounds.top,
+        });
+        const newNode = {
+            id: getId(),
+            type,
+            position,
+            data: { label: `${type} node` },
+        };
+
+        setNodes((nds) => nds.concat(newNode));
+    },
+        [reactFlowInstance, setNodes]
+    );
 
     // we are using a bit of a shortcut here to adjust the edge type
     // this could also be done with a custom edge for example
@@ -57,21 +78,27 @@ const Content = () => {
     });
 
     return (
-        <ReactFlow
-            nodes={nodes}
-            edges={edgesWithUpdatedTypes}
-            onNodesChange={onNodesChange}
-            onEdgesChange={onEdgesChange}
-            onConnect={onConnect}
-            onInit={onInit}
-            fitView
-            attributionPosition="top-right"
-            nodeTypes={nodeTypes}
-        >
-            <MiniMap style={minimapStyle} zoomable pannable />
-            <Controls />
-            <Background color="#aaa" gap={16} />
-        </ReactFlow>
+        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+            <ReactFlow
+                nodes={nodes}
+                edges={edgesWithUpdatedTypes}
+                onNodesChange={onNodesChange}
+                onEdgesChange={onEdgesChange}
+                onConnect={onConnect}
+                onInit={setReactFlowInstance}
+                fitView
+                // attributionPosition="top-right"
+                nodeTypes={nodeTypes}
+                proOptions={{ hideAttribution: true }}
+                onDrop={onDrop}
+                onDragOver={onDragOver}
+            >
+                <MiniMap style={minimapStyle} zoomable pannable />
+                <Controls />
+                <Background color="#aaa" gap={16} />
+            </ReactFlow>
+        </div>
+
     );
 };
 

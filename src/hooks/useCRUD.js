@@ -17,7 +17,9 @@ export default function useCRUD(URL) {
                     // 'Content-Type': 'application/x-www-form-urlencoded',
                 }
             )
-            setData([...data, response])
+            if (data) setData([...data, response])
+            else setData([response])
+
         } catch (e) { }
     }
 
@@ -25,11 +27,17 @@ export default function useCRUD(URL) {
         try {
             if (id) {
                 const response = await request(URL + '/' + id, 'GET')
-                setData(response.message)
+                if (response.message.length !== 0) {
+                    setData(response.message)
+                }
+                else setData(null)
             }
             else {
                 const response = await request(URL, 'GET')
-                setData(response.message)
+                if (response.message.length !== 0) {
+                    setData(response.message)
+                }
+                else setData(null)
             }
         } catch (e) { }
     }, [request, URL])
@@ -55,7 +63,8 @@ export default function useCRUD(URL) {
     const onDelete = async (id) => {
         try {
             const response = await request(URL + '/' + id, 'DELETE')
-            setData(data.filter(elem => elem._id !== response._id))
+            if (data.length === 1) setData(null)
+            else setData(data.filter(elem => elem._id !== response._id))
         } catch (e) { }
     }
 
