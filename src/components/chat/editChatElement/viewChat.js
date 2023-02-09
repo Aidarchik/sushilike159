@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import Card from './card'
 import EditChat from './editChat';
 import useCRUD from './../../../../hooks/useCRUD';
@@ -40,26 +40,5 @@ const ViewChat = () => {
         </div>
     )
 }
-
-export const OneCard = () => {
-    const POSTS = useCRUD(URL_POSTS_REMOTE);
-    if (POSTS.error) {
-        console.log('error', POSTS.error)
-        return
-    }
-    const elem = POSTS.data
-    console.log(elem);
-    return (
-        <Card
-            post={elem}
-            key={elem._id}
-            remove={POSTS.onDelete}
-            update={POSTS.onUpdate}
-            loading={POSTS.loading}
-        />
-    )
-}
-
-
 
 export default ViewChat

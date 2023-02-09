@@ -15,6 +15,9 @@ const Sidebar = () => {
             <div className="dndnode" onDragStart={(event) => onDragStart(event, 'textUpdater')} draggable>
                 EDIT
             </div>
+            <div className="dndnode" onDragStart={(event) => onDragStart(event, 'NodeMessage')} draggable>
+                Message
+            </div>
             <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>
                 Output Node
             </div>

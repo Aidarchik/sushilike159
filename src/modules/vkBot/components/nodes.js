@@ -1,9 +1,9 @@
 import React, { memo } from 'react';
 import { Handle, Position } from 'reactflow';
-import { URL_POSTS_REMOTE } from '../const';
-import useCRUD from './../hooks/useCRUD';
-import Card from './content/chat/editChatElement/card';
-import EditChat from './content/chat/editChatElement/editChat';
+import { URL_POSTS_REMOTE } from '../../../consts/const';
+import useCRUD from '../../../hooks/useCRUD';
+import Card from '../../../components/chat/editChatElement/card';
+import EditChat from '../../../components/chat/editChatElement/editChat';
 
 const handleStyle = { left: 10 };
 
@@ -44,7 +44,7 @@ const TextUpdaterNode = ({ data }) => {
                 }
                 <Handle type="source" position={Position.Bottom} id="a" style={handleStyle} />
                 <Handle type="source" position={Position.Bottom} id="b" />
-            </div >
+            </div>
         )
 
     } catch (error) {
