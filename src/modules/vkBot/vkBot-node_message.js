@@ -7,25 +7,26 @@ const NodeMessage = (props) => {
 
     try {
         return (
-            <div className="min-w-96 min-h-48 bg-slate-600 rounded-lg touchdevice-flow">
+            <div className="touchdevice-flow">
                 <Handle
                     type="target"
                     position={Position.Left}
                     isValidConnection={
                         (params) => {
-                            // console.log('target', params)
+                            if (params.source === params.target) { return false }
                             return true
                         }}
                 />
-                <Message data={props.id} />
+                <Message data={props} />
                 <Handle
                     type="source"
                     position={Position.Right}
                     isValidConnection={
                         (params) => {
-                            // console.log('source', params)
+                            if (params.source === params.target) { return false }
                             return true
-                        }} />
+                        }}
+                />
             </div>
         )
 

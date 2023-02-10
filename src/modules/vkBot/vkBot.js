@@ -8,7 +8,7 @@ import ReactFlow, {
     useEdgesState,
 } from 'reactflow';
 
-import { nodes as initialNodes, edges as initialEdges } from './stores/initial-elements';
+// import { nodes as initialNodes, edges as initialEdges } from './stores/initial-elements';
 import CustomNode from './components/CustomNode';
 import TextUpdaterNode from './components/nodes'
 
@@ -32,8 +32,8 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const VkBot = () => {
-    const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-    const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
+    const [nodes, setNodes, onNodesChange] = useNodesState([]);
+    const [edges, setEdges, onEdgesChange] = useEdgesState([]);
     const [reactFlowInstance, setReactFlowInstance] = useState(null)
     const [sourceNodeData, setSourceNodeData] = useState(null)
 
@@ -121,7 +121,7 @@ const VkBot = () => {
                 >
                     <MiniMap style={minimapStyle} zoomable pannable />
                     <Controls />
-                    <Background color="#aaa" gap={16} />
+                    <Background className='bg-reactflow bg-cover bg-scroll overflow-auto bg-no-repeat opacity-30' gap={16} />
                 </ReactFlow>
             </div>
         </>
