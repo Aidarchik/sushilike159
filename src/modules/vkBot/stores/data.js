@@ -21,5 +21,5 @@ export const data = {
             }
         }
     },
-    "attachment": {}
+    "attachment": "https://fototips.ru/wp-content/uploads/2012/03/00_Autumn_Photo.jpg",
 }

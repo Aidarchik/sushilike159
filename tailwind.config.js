@@ -18,6 +18,10 @@ module.exports = {
         'pattaya': ['"Pattaya"', 'regular'],
         'roboto': ['"Roboto Flex"', 'regular'],
         'stix': ['"STIX Two Text"', 'regular'],
+        'vk': ['-apple-system', 'BlinkMacSystemFont'],
+      },
+      boxShadow: {
+        'vk': '0 0 0 0.5px',
       },
     },
   },

@@ -6,6 +6,7 @@ import ReactFlow, {
     Background,
     useNodesState,
     useEdgesState,
+    MarkerType,
 } from 'reactflow';
 
 // import { nodes as initialNodes, edges as initialEdges } from './stores/initial-elements';
@@ -25,7 +26,8 @@ const nodeTypes = {
 };
 
 const minimapStyle = {
-    height: 120,
+    height: 100,
+    width: 150
 };
 
 let id = 0;
@@ -38,12 +40,12 @@ const VkBot = () => {
     const [sourceNodeData, setSourceNodeData] = useState(null)
 
     const onConnectStart = useCallback((_, { nodeId }) => {
-        console.log(nodeId)
+        // console.log(nodeId)
         setSourceNodeData(...nodes.filter(nds => (nds.id === nodeId)))
     }, [nodes])
 
     const onConnect = useCallback((params, sourceData) => {
-        console.log(sourceData)
+        // console.log(sourceData)
         setNodes((nds) =>
             nds.map((node) => {
                 if (node.id === params.target) {
@@ -93,8 +95,21 @@ const VkBot = () => {
     // this could also be done with a custom edge for example
     const edgesWithUpdatedTypes = edges.map((edge) => {
         if (edge.sourceHandle) {
-            const edgeType = nodes.find((node) => node.type === 'custom').data.selects[edge.sourceHandle];
-            edge.type = edgeType;
+            edge.label = edge.sourceHandle
+            edge.animated = true
+            edge.style = { stroke: 'brown', strokeWidth: 4 }
+            edge.markerEnd = {
+                type: MarkerType.ArrowClosed,
+                width: 15,
+                height: 15,
+                color: 'brown',
+            }
+            const findNode = nodes.find((node) => node.type === 'custom')//.data.selects[edge.sourceHandle];
+            if (findNode) {
+                const edgeType = findNode.type;
+                edge.type = edgeType;
+                console.log(edgeType);
+            }
         }
         return edge;
     });
@@ -118,10 +133,11 @@ const VkBot = () => {
                     proOptions={{ hideAttribution: true }}
                     onDrop={onDrop}
                     onDragOver={onDragOver}
+                    minZoom={0.1}
                 >
                     <MiniMap style={minimapStyle} zoomable pannable />
                     <Controls />
-                    <Background className='bg-reactflow bg-cover bg-scroll overflow-auto bg-no-repeat opacity-30' gap={16} />
+                    <Background className='bg-hero-pattern bg-cover h-screen bg-scroll overflow-auto bg-no-repeat opacity-70' gap={16} />
                 </ReactFlow>
             </div>
         </>
