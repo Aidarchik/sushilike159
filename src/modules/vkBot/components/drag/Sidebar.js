@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Sidebar = () => {
+const Sidebar = ({ addNode }) => {
     const onDragStart = (event, nodeType) => {
         event.dataTransfer.setData('application/reactflow', nodeType);
         event.dataTransfer.effectAllowed = 'move';
@@ -15,7 +15,7 @@ const Sidebar = () => {
             <div className="dndnode" onDragStart={(event) => onDragStart(event, 'textUpdater')} draggable>
                 EDIT
             </div>
-            <div className="dndnode" onDragStart={(event) => onDragStart(event, 'NodeMessage')} draggable>
+            <div className="dndnode" onDragStart={(event) => onDragStart(event, 'NodeMessage')} onClick={event => addNode(event, 'NodeMessage')} draggable>
                 Message
             </div>
             <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'output')} draggable>

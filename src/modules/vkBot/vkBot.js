@@ -66,6 +66,28 @@ const VkBot = () => {
         event.dataTransfer.dropEffect = 'move';
     }, [])
 
+    const addNodeHandler = (event, NodeType) => {
+        const reactFlowBounds = document.querySelector('.reactflow-wrapper').getBoundingClientRect();
+        if (typeof NodeType === 'undefined' || !NodeType) {
+            return;
+        }
+
+        console.log(Math.round(Math.random() * reactFlowBounds.width));
+        const position = reactFlowInstance.project({
+            x: Math.round(Math.random() * reactFlowBounds.width),
+            y: Math.round(Math.random() * reactFlowBounds.height),
+        });
+
+        const newNode = {
+            id: getId(),
+            type: NodeType,
+            position,
+            data,
+        };
+
+        setNodes((nds) => [...nds, newNode]);
+    }
+
     const onDrop = useCallback((event) => {
         event.preventDefault()
         const reactFlowBounds = document.querySelector('.reactflow-wrapper').getBoundingClientRect();
@@ -116,7 +138,7 @@ const VkBot = () => {
 
     return (
         <>
-            <Sidebar />
+            <Sidebar addNode={addNodeHandler} />
             <div className="reactflow-wrapper" >
                 <ReactFlow
                     nodes={nodes}

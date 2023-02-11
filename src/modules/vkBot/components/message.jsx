@@ -2,7 +2,7 @@ import React from 'react';
 import { Handle, Position } from 'reactflow';
 export const Message = (props) => {
     const { message, keyboard, attachment } = props.data.data
-    console.log(attachment);
+    // console.log(attachment);
     return (
         <div className="w-72 min-h-48 bg-slate-800 p-2 rounded-lg text-white shadow-vk shadow-slate-400 text-xs flex flex-col justify-center font-roboto">
             <div className='pb-2 text-center text-base font-bold'>Отправить сообщение</div>
