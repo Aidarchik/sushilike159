@@ -10,6 +10,7 @@ export const Message = (props) => {
                 <img
                     src={attachment}
                     className='w-auto h-auto rounded-lg'
+                    alt=''
                 />
                 <div className="text-justify p-2 text-[11px] text-white">
                     {message}

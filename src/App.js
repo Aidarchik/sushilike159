@@ -1,6 +1,5 @@
 import React from 'react';
 import { ReactFlowProvider } from 'reactflow';
-import Header from './components/header';
 import VkBot from './modules/vkBot/vkBot';
 
 const App = () => {
