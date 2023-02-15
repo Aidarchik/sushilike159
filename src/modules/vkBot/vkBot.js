@@ -67,12 +67,11 @@ const VkBot = () => {
     }, [])
 
     const addNodeHandler = (event, NodeType) => {
+        event.preventDefault()
         const reactFlowBounds = document.querySelector('.reactflow-wrapper').getBoundingClientRect();
         if (typeof NodeType === 'undefined' || !NodeType) {
             return;
         }
-
-        console.log(Math.round(Math.random() * reactFlowBounds.width));
         const position = reactFlowInstance.project({
             x: Math.round(Math.random() * reactFlowBounds.width),
             y: Math.round(Math.random() * reactFlowBounds.height),

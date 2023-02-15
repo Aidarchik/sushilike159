@@ -16,12 +16,14 @@ export const Message = (props) => {
                     {message}
                 </div>
                 <div
-                    className="bg-slate-500 mt-2 py-1 px-7 text-center rounded-lg relative"
+                    className="bg-slate-500 mt-2 py-1 px-3 text-center rounded-lg relative flex justify-between items-center"
                 >
-                    <span>{keyboard.urlButton.label}</span>
+                    <div></div>
+                    <div>{keyboard.urlButton.label}</div>
+                    <div className='w-[10px] h-[10px] bg-orange-400 border rounded-full items-end'></div>
                     <Handle
                         id={keyboard.urlButton.label}
-                        style={{ right: 10, position: 'absolute', width: 10, height: 10, backgroundColor: 'coral' }}
+                        style={{ right: 0, position: 'absolute', width: '100%', height: '100%', opacity: 0, borderRadius: 0 }}
                         type="source"
                         position={Position.Right}
                         isValidConnection={
@@ -30,15 +32,20 @@ export const Message = (props) => {
                                 if (params.source === params.target) { return false }
                                 return true
                             }}
-                    />
+
+                    >
+
+                    </Handle>
                 </div>
                 <div
-                    className="bg-slate-500 mt-2 py-1 text-center rounded-lg relative"
+                    className="bg-slate-500 mt-2 py-1 px-3 text-center rounded-lg relative flex justify-between items-center"
                 >
-                    <span className=''>{keyboard.callbackButton.label}</span>
+                    <div></div>
+                    <div className=''>{keyboard.callbackButton.label}</div>
+                    <div className='w-[10px] h-[10px] bg-orange-400 border rounded-full items-end'></div>
                     <Handle
                         id={keyboard.callbackButton.label}
-                        style={{ right: 10, position: 'absolute', width: 10, height: 10, backgroundColor: 'coral' }}
+                        style={{ right: 0, position: 'absolute', width: '100%', height: '100%', opacity: 0, borderRadius: 0 }}
                         type="source"
                         position={Position.Right}
                         isValidConnection={
@@ -50,12 +57,14 @@ export const Message = (props) => {
                     />
                 </div>
                 <div
-                    className="bg-slate-500 mt-2 py-1 text-center rounded-lg relative"
+                    className="bg-slate-500 mt-2 py-1 px-3 text-center rounded-lg relative flex justify-between items-center"
                 >
-                    <span className=''>{keyboard.textButton.label}</span>
+                    <div></div>
+                    <div className=''>{keyboard.textButton.label}</div>
+                    <div className='w-[10px] h-[10px] bg-orange-400 border rounded-full items-end'></div>
                     <Handle
                         id={keyboard.textButton.label}
-                        style={{ right: 10, position: 'absolute', width: 10, height: 10, backgroundColor: 'coral' }}
+                        style={{ right: 0, position: 'absolute', width: '100%', height: '100%', opacity: 0, borderRadius: 0 }}
                         type="source"
                         position={Position.Right}
                         isValidConnection={
@@ -76,6 +85,6 @@ export const Message = (props) => {
             >
                 + Добавить контент
             </button>
-        </div>
+        </div >
     )
 }
