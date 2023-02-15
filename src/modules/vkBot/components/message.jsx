@@ -4,13 +4,14 @@ export const Message = (props) => {
     const { message, keyboard, attachment } = props.data.data
     // console.log(attachment);
     return (
-        <div className="w-72 min-h-48 bg-slate-800 p-2 rounded-lg text-white shadow-vk shadow-slate-400 text-xs flex flex-col justify-center font-roboto">
-            <div className='pb-2 text-center text-base font-bold'>Отправить сообщение</div>
+        <div className="w-72 min-h-48 bg-slate-800 p-2 rounded-lg text-white shadow-vk shadow-slate-400 text-xs flex flex-col justify-center font-roboto cursor-default">
+            <div className='pb-2 text-center text-base font-bold move-Handle-Style cursor-move'>Отправить сообщение</div>
             <div className='flex flex-col bg-slate-700 p-2 rounded-xl shadow-vk shadow-slate-400'>
                 <img
                     src={attachment}
                     className='w-auto h-auto rounded-lg'
                     alt=''
+                    draggable='false'
                 />
                 <div className="text-justify p-2 text-[11px] text-white">
                     {message}

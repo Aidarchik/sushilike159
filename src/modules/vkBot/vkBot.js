@@ -82,6 +82,7 @@ const VkBot = () => {
             type: NodeType,
             position,
             data,
+            dragHandle: '.move-Handle-Style',
         };
 
         setNodes((nds) => [...nds, newNode]);
@@ -105,6 +106,7 @@ const VkBot = () => {
             type,
             position,
             data,
+            dragHandle: '.move-Handle-Style',
         };
 
         setNodes((nds) => [...nds, newNode]);
