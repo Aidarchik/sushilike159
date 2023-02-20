@@ -42,9 +42,9 @@ const Login = () => {
                             Войти
                         </button>
                     </div>
-                    <Link to={"/api/vk"} className='mt-6 flex items-center justify-around cursor-pointer px-2 rounded-md  hover:bg-blue-200 '>
+                    <a href="https://sushilike159.ru/api/vk" className='mt-6 flex items-center justify-around cursor-pointer px-2 rounded-md  hover:bg-blue-200'>
                         <img className='w-10 h-10' src={vk} alt="Авторизоваться в VK" />
-                    </Link>
+                    </a>
                 </form>
 
                 <p className="mt-8 text-xs font-light text-center text-gray-700">
