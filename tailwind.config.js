@@ -21,7 +21,7 @@ module.exports = {
         'vk': ['-apple-system', 'BlinkMacSystemFont'],
       },
       boxShadow: {
-        'vk': '0 0 0 0.5px',
+        'vk': ' 0px 0px 44px -22px rgba(0,0,0,0.61)',
       },
     },
   },

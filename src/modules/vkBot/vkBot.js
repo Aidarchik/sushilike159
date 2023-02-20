@@ -7,6 +7,7 @@ import ReactFlow, {
     useNodesState,
     useEdgesState,
     MarkerType,
+    ReactFlowProvider,
 } from 'reactflow';
 
 // import { nodes as initialNodes, edges as initialEdges } from './stores/initial-elements';
@@ -138,32 +139,34 @@ const VkBot = () => {
     });
 
     return (
-        <>
-            <Sidebar addNode={addNodeHandler} />
-            <div className="reactflow-wrapper" >
-                <ReactFlow
-                    nodes={nodes}
-                    edges={edgesWithUpdatedTypes}
-                    onNodesChange={onNodesChange}
-                    onEdgesChange={onEdgesChange}
-                    onConnect={params => onConnect(params, sourceNodeData)}
-                    onConnectStart={onConnectStart}
-                    // onConnectEnd={(...arg) => console.log('Подключились к...')}
-                    onInit={setReactFlowInstance}
-                    fitView
-                    // attributionPosition="top-right"
-                    nodeTypes={nodeTypes}
-                    proOptions={{ hideAttribution: true }}
-                    onDrop={onDrop}
-                    onDragOver={onDragOver}
-                    minZoom={0.1}
-                >
-                    <MiniMap style={minimapStyle} zoomable pannable />
-                    <Controls />
-                    <Background className='bg-hero-pattern bg-cover h-screen bg-scroll overflow-auto bg-no-repeat opacity-70' gap={16} />
-                </ReactFlow>
+        <ReactFlowProvider>
+            <div className='bg-white h-[calc(100vh-68px)] m-auto dndflow'>
+                <Sidebar addNode={addNodeHandler} />
+                <div className="reactflow-wrapper" >
+                    <ReactFlow
+                        nodes={nodes}
+                        edges={edgesWithUpdatedTypes}
+                        onNodesChange={onNodesChange}
+                        onEdgesChange={onEdgesChange}
+                        onConnect={params => onConnect(params, sourceNodeData)}
+                        onConnectStart={onConnectStart}
+                        // onConnectEnd={(...arg) => console.log('Подключились к...')}
+                        onInit={setReactFlowInstance}
+                        fitView
+                        // attributionPosition="top-right"
+                        nodeTypes={nodeTypes}
+                        proOptions={{ hideAttribution: true }}
+                        onDrop={onDrop}
+                        onDragOver={onDragOver}
+                        minZoom={0.1}
+                    >
+                        <MiniMap style={minimapStyle} zoomable pannable />
+                        <Controls />
+                        <Background className='bg-hero-pattern bg-cover h-screen bg-scroll overflow-auto bg-no-repeat opacity-70' gap={16} />
+                    </ReactFlow>
+                </div>
             </div>
-        </>
+        </ReactFlowProvider>
 
 
     );
