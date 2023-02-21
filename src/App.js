@@ -15,11 +15,11 @@ const App = () => {
         const user = await fetch('https://sushilike159.ru/api/auth/login/success', {
           method: 'GET',
           credentials: 'include',
-          headers: {
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Credentials': true,
-          },
+          // headers: {
+          //   Accept: 'application/json',
+          //   'Content-Type': 'application/json',
+          //   'Access-Control-Allow-Credentials': true,
+          // },
         })
         console.log(user);
         if (user.status === 200) setUser(user.json())
