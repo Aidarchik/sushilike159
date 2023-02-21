@@ -4,9 +4,34 @@ import Header from './components/header';
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ViewChat from './components/chat/editChatElement/viewChat';
 import Login from './pages/login';
+import { useEffect, useState } from 'react';
 
 const App = () => {
-  const user = false
+  const [user, setUser] = useState(null)
+
+  useEffect(() => {
+    const getUser = async () => {
+      try {
+        const user = await fetch('https://sushilike159.ru/api/auth/login/success', {
+          method: 'GET',
+          credentials: 'include',
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Credentials': true,
+          },
+        })
+        if (user.status === 200) setUser(user.json())
+        throw new Error('Аутентификация не удалась')
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser()
+  }, [])
+
+  console.log(user);
+
   return (
     <BrowserRouter>
       <Header user={user} />
