@@ -22,7 +22,7 @@ const App = () => {
           },
         })
         console.log(user);
-        if (user.status === 200) setUser(user.json())
+        if (user.status === 200) setUser(user)
         else throw new Error('Аутентификация не удалась')
       } catch (error) {
         console.log(error);
