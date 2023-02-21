@@ -3,6 +3,11 @@ import vk from './../assets/vk.svg'
 import { Link } from 'react-router-dom'
 
 const Login = () => {
+
+    const onVkHandler = () => {
+        window.open('https://sushilike159.ru/api/auth/vk', '_self')
+    }
+
     return (
         <div className="relative flex flex-col justify-center min-h-[calc(100vh-68px)] overflow-hidden">
             <div className="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
@@ -42,9 +47,12 @@ const Login = () => {
                             Войти
                         </button>
                     </div>
-                    <a href="https://sushilike159.ru/api/vk" className='mt-6 flex items-center justify-around cursor-pointer px-2 rounded-md  hover:bg-blue-200'>
+                    <div
+                        className='mt-6 flex items-center justify-around cursor-pointer px-2 rounded-md  hover:bg-blue-200'
+                        onClick={onVkHandler}
+                    >
                         <img className='w-10 h-10' src={vk} alt="Авторизоваться в VK" />
-                    </a>
+                    </div>
                 </form>
 
                 <p className="mt-8 text-xs font-light text-center text-gray-700">
