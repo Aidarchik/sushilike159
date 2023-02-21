@@ -12,7 +12,7 @@ const App = () => {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const user = await fetch('https://sushilike159.ru/api/auth/login/success', {
+        const user = await fetch('http://localhost:5000/auth/login/success', {
           method: 'GET',
           // credentials: 'include',
           // headers: {
